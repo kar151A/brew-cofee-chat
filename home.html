@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brew Coffee | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">B</div>
+          <div>
+            <p class="brand-name">Brew Coffee</p>
+            <p class="brand-tag" id="brandTag">One thoughtful chat at a time</p>
+          </div>
+        </div>
+        <nav class="nav">
+          <a href="#matches">Matches</a>
+          <a href="#ritual">How it works</a>
+          <a href="#planner">Plan a chat</a>
+        </nav>
+        <div class="topbar-actions">
+          <span class="user-pill" id="userPill">Brew member</span>
+          <button class="button button-secondary topbar-button" type="button" id="logoutButton">
+            Log out
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Meet thoughtful strangers for one good coffee chat.</p>
+            <h1 id="welcomeTitle">Welcome back.</h1>
+            <p class="hero-text" id="welcomeCopy">
+              Your next meaningful coffee conversation is ready to be shaped.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#planner">Find my coffee chat</a>
+              <a class="button button-secondary" href="#matches">See the vibe</a>
+            </div>
+            <ul class="hero-points">
+              <li>Small prompts that go deeper than small talk</li>
+              <li>Profiles built around curiosity, not performance</li>
+              <li>One-match rhythm designed for real attention</li>
+            </ul>
+          </div>
+
+          <div class="hero-card-wrap">
+            <article class="hero-card">
+              <div class="card-pill">Today's pairing</div>
+              <div class="match-head">
+                <div class="avatar-stack">
+                  <div class="avatar avatar-olive">A</div>
+                  <div class="avatar avatar-cream">R</div>
+                </div>
+                <div>
+                  <h2>Anika + Rohan</h2>
+                  <p>Matched for a 47-minute coffee conversation</p>
+                </div>
+              </div>
+
+              <div class="signal-grid">
+                <div>
+                  <span>Shared signal</span>
+                  <strong>Both ask slow questions</strong>
+                </div>
+                <div>
+                  <span>Conversation angle</span>
+                  <strong>Career pivots and creative courage</strong>
+                </div>
+                <div>
+                  <span>Suggested spot</span>
+                  <strong>Window seats, quiet cafe, 6:30 PM</strong>
+                </div>
+              </div>
+
+              <div class="prompt-box">
+                <p class="prompt-label">First prompt</p>
+                <p id="rotatingPrompt">
+                  What changed your mind about something important in the last year?
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="stats-strip">
+          <div>
+            <strong>1 chat</strong>
+            <span>at a time so the moment has room to breathe</span>
+          </div>
+          <div>
+            <strong>3 prompts</strong>
+            <span>to help strangers skip the exhausting scripts</span>
+          </div>
+          <div>
+            <strong>100% sage</strong>
+            <span>a soft visual identity for calm, grounded interactions</span>
+          </div>
+        </section>
+
+        <section id="ritual" class="ritual-section">
+          <div class="section-heading">
+            <p class="eyebrow">The ritual</p>
+            <h2>Designed for one good conversation, not endless browsing.</h2>
+          </div>
+
+          <div class="ritual-grid">
+            <article class="ritual-card">
+              <span>01</span>
+              <h3>Share your mood</h3>
+              <p>
+                Pick the kind of exchange you want today: reflective, playful,
+                ambitious, or quietly honest.
+              </p>
+            </article>
+            <article class="ritual-card">
+              <span>02</span>
+              <h3>Meet one person</h3>
+              <p>
+                We surface a single thoughtful match instead of a feed of people
+                to evaluate.
+              </p>
+            </article>
+            <article class="ritual-card">
+              <span>03</span>
+              <h3>Use a gentle structure</h3>
+              <p>
+                Timed prompts and a suggested cafe format make first meetings
+                feel easier and warmer.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="matches" class="matches-section">
+          <div class="section-heading">
+            <p class="eyebrow">Sample matches</p>
+            <h2>People you'd actually want to talk to.</h2>
+          </div>
+
+          <div class="match-grid">
+            <article class="profile-card">
+              <div class="profile-top">
+                <div class="avatar avatar-moss">M</div>
+                <div>
+                  <h3>Mira, 27</h3>
+                  <p>Product designer, journaling addict, recovering perfectionist</p>
+                </div>
+              </div>
+              <p class="profile-quote">
+                "I like conversations that leave both people slightly more brave."
+              </p>
+              <div class="chips">
+                <span>Morning coffee</span>
+                <span>Life transitions</span>
+                <span>Books that changed us</span>
+              </div>
+            </article>
+
+            <article class="profile-card">
+              <div class="profile-top">
+                <div class="avatar avatar-sand">T</div>
+                <div>
+                  <h3>Tarun, 31</h3>
+                  <p>Engineer, amateur chef, trying to be less online</p>
+                </div>
+              </div>
+              <p class="profile-quote">
+                "I'm drawn to people who can be thoughtful without being too polished."
+              </p>
+              <div class="chips">
+                <span>Second acts</span>
+                <span>City walks</span>
+                <span>Creative discipline</span>
+              </div>
+            </article>
+
+            <article class="profile-card accent-card">
+              <p class="mini-label">Why it works</p>
+              <h3>Matching is based on conversational energy.</h3>
+              <p>
+                Instead of optimizing for popularity, Brew looks for compatible
+                pace, openness, and curiosity.
+              </p>
+              <div class="compatibility">
+                <div>
+                  <span>Depth</span>
+                  <div class="meter"><i style="width: 84%"></i></div>
+                </div>
+                <div>
+                  <span>Warmth</span>
+                  <div class="meter"><i style="width: 92%"></i></div>
+                </div>
+                <div>
+                  <span>Curiosity</span>
+                  <div class="meter"><i style="width: 88%"></i></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="planner" class="planner-section">
+          <div class="planner-copy">
+            <p class="eyebrow">Plan your chat</p>
+            <h2>Tell Brew what kind of coffee conversation you're hoping for.</h2>
+            <p>
+              Pick a mood, choose your ideal setting, and we'll preview the kind
+              of stranger you might meet.
+            </p>
+          </div>
+
+          <form class="planner-card" id="plannerForm">
+            <label>
+              Your name
+              <input type="text" id="name" placeholder="A thoughtful human" required />
+            </label>
+
+            <label>
+              Today's mood
+              <select id="mood">
+                <option value="reflective">Reflective</option>
+                <option value="playful">Playful</option>
+                <option value="ambitious">Ambitious</option>
+                <option value="honest">Quietly honest</option>
+              </select>
+            </label>
+
+            <label>
+              Ideal coffee setting
+              <select id="setting">
+                <option value="sunlit cafe">Sunlit cafe corner</option>
+                <option value="bookshop cafe">Bookshop cafe</option>
+                <option value="garden patio">Garden patio</option>
+                <option value="late-night espresso bar">Late-night espresso bar</option>
+              </select>
+            </label>
+
+            <label>
+              What would make this chat feel meaningful?
+              <textarea
+                id="intention"
+                rows="4"
+                placeholder="I want to talk with someone curious about change, identity, and what a calmer life could look like."
+              ></textarea>
+            </label>
+
+            <button class="button button-primary button-full" type="submit">
+              Generate my coffee chat
+            </button>
+          </form>
+        </section>
+
+        <section class="result-section">
+          <article class="result-card" id="resultCard">
+            <p class="mini-label">Match preview</p>
+            <h3 id="resultTitle">Your next good conversation starts here.</h3>
+            <p id="resultSummary">
+              Fill in the planner and Brew will sketch a sample coffee-chat pairing.
+            </p>
+            <div class="result-meta" id="resultMeta">
+              <span>Thoughtful mood</span>
+              <span>Calm setting</span>
+              <span>Gentle prompts</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="history-section">
+          <div class="section-heading">
+            <p class="eyebrow">Your history</p>
+            <h2>Your saved coffee chat ideas live here.</h2>
+          </div>
+
+          <p class="history-empty" id="historyEmpty">
+            You haven't generated any coffee chat history yet. Try the planner above.
+          </p>
+          <div class="history-list" id="historyList"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./db.js"></script>
+    <script src="./home.js"></script>
+  </body>
+</html>

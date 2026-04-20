@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brew Coffee | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="auth-screen">
+      <div class="auth-shell">
+        <div class="auth-copy">
+          <p class="eyebrow">Brew Coffee</p>
+          <h1>Log in for your next good coffee chat.</h1>
+          <p class="hero-text">
+            Brew is built for thoughtful strangers, soft introductions, and one
+            meaningful conversation at a time.
+          </p>
+          <div class="auth-highlights">
+            <div>
+              <strong>One match at a time</strong>
+              <span>Slow down and give one conversation your real attention.</span>
+            </div>
+            <div>
+              <strong>Thoughtful prompts</strong>
+              <span>Skip awkward small talk and begin somewhere more human.</span>
+            </div>
+            <div>
+              <strong>Calm design</strong>
+              <span>Sage green, warm light, and a quieter social rhythm.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-card">
+          <div class="brand auth-brand">
+            <div class="brand-mark">B</div>
+            <div>
+              <p class="brand-name">Welcome back</p>
+              <p class="brand-tag">Sign in to open your Brew home</p>
+            </div>
+          </div>
+
+          <form id="loginForm" class="auth-form">
+            <label>
+              Email
+              <input type="email" id="loginEmail" placeholder="you@brewcoffee.app" required />
+            </label>
+
+            <label>
+              Password
+              <input type="password" id="loginPassword" placeholder="Enter your password" required />
+            </label>
+
+            <p class="form-feedback" id="loginFeedback" aria-live="polite"></p>
+
+            <button class="button button-primary button-full" type="submit">
+              Log in
+            </button>
+          </form>
+
+          <p class="auth-footnote">
+            New to Brew? <a href="./signup.html" class="text-link">Create an account</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script src="./db.js"></script>
+    <script src="./auth.js"></script>
+  </body>
+</html>

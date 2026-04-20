@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brew Coffee | Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="auth-screen">
+      <div class="auth-shell">
+        <div class="auth-copy">
+          <p class="eyebrow">Create your Brew profile</p>
+          <h1>Join for thoughtful coffee chats with new people.</h1>
+          <p class="hero-text">
+            Tell Brew who you are, what city you're in, and the kind of
+            conversation you're hoping to have.
+          </p>
+          <div class="auth-highlights">
+            <div>
+              <strong>Build your profile</strong>
+              <span>Your details are saved so you can come back and log in later.</span>
+            </div>
+            <div>
+              <strong>Share your intention</strong>
+              <span>We use your vibe to shape your first coffee chat experience.</span>
+            </div>
+            <div>
+              <strong>Step into Brew</strong>
+              <span>After sign up, you'll land directly on the app home page.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-card">
+          <div class="brand auth-brand">
+            <div class="brand-mark">B</div>
+            <div>
+              <p class="brand-name">New account</p>
+              <p class="brand-tag">Create your saved Brew login</p>
+            </div>
+          </div>
+
+          <form id="signupForm" class="auth-form">
+            <label>
+              Full name
+              <input type="text" id="signupName" placeholder="Your full name" required />
+            </label>
+
+            <label>
+              Email
+              <input type="email" id="signupEmail" placeholder="you@brewcoffee.app" required />
+            </label>
+
+            <label>
+              Password
+              <input type="password" id="signupPassword" placeholder="Create a password" required />
+            </label>
+
+            <label>
+              City
+              <input type="text" id="signupCity" placeholder="Bengaluru" required />
+            </label>
+
+            <label>
+              What kind of chat are you looking for?
+              <textarea
+                id="signupIntention"
+                rows="4"
+                placeholder="I'm looking for thoughtful conversations about change, creativity, and building a calmer life."
+                required
+              ></textarea>
+            </label>
+
+            <p class="form-feedback" id="signupFeedback" aria-live="polite"></p>
+
+            <button class="button button-primary button-full" type="submit">
+              Create account
+            </button>
+          </form>
+
+          <p class="auth-footnote">
+            Already have an account? <a href="./login.html" class="text-link">Log in</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <script src="./db.js"></script>
+    <script src="./auth.js"></script>
+  </body>
+</html>
