@@ -1,3 +1,10 @@
+import {
+  getUserHistory,
+  isFirebaseReady,
+  logOutUser,
+  saveHistoryEntry
+} from "./firebase-service.js";
+
 const SESSION_KEY = "brewCoffeeSession";
 
 const prompts = [
@@ -99,13 +106,20 @@ if (!user) {
   }
 
   async function loadHistory() {
+    if (!isFirebaseReady()) {
+      historyEmpty.classList.remove("is-hidden");
+      historyEmpty.textContent = "Add your Firebase project config in firebase-config.js first.";
+      return;
+    }
+
     try {
-      const entries = await BrewDB.getHistoryByUser(user.id);
+      const entries = await getUserHistory(user.uid);
       renderHistory(entries);
     } catch (error) {
       console.error("Unable to load history", error);
       historyEmpty.classList.remove("is-hidden");
-      historyEmpty.textContent = "We couldn't load your saved coffee chat history right now.";
+      historyEmpty.textContent =
+        error.message || "We couldn't load your saved coffee chat history right now.";
     }
   }
 
@@ -124,8 +138,17 @@ if (!user) {
     promptNode.textContent = prompts[promptIndex];
   }, 4000);
 
-  logoutButton.addEventListener("click", () => {
+  logoutButton.addEventListener("click", async () => {
     localStorage.removeItem(SESSION_KEY);
+
+    if (isFirebaseReady()) {
+      try {
+        await logOutUser();
+      } catch (error) {
+        console.error("Unable to log out from Firebase", error);
+      }
+    }
+
     window.location.href = "./login.html";
   });
 
@@ -158,9 +181,15 @@ if (!user) {
     resultCard.classList.add("is-active");
     resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
+    if (!isFirebaseReady()) {
+      historyEmpty.classList.remove("is-hidden");
+      historyEmpty.textContent = "Add your Firebase project config in firebase-config.js first.";
+      return;
+    }
+
     try {
-      await BrewDB.addHistoryEntry({
-        userId: user.id,
+      await saveHistoryEntry({
+        userId: user.uid,
         title,
         summary,
         mood,
@@ -173,11 +202,5 @@ if (!user) {
     }
   });
 
-  BrewDB.open()
-    .then(() => loadHistory())
-    .catch((error) => {
-      console.error("Unable to initialize Brew database", error);
-      historyEmpty.classList.remove("is-hidden");
-      historyEmpty.textContent = "We couldn't open your Brew database right now.";
-    });
+  loadHistory();
 }

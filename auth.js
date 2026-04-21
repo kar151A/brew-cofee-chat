@@ -1,3 +1,5 @@
+import { isFirebaseReady, signInUser, signUpUser } from "./firebase-service.js";
+
 const SESSION_KEY = "brewCoffeeSession";
 
 function saveSession(user) {
@@ -36,13 +38,9 @@ function redirectIfSignedIn() {
 const signupForm = document.getElementById("signupForm");
 const loginForm = document.getElementById("loginForm");
 
-BrewDB.open()
-  .then(() => {
-    redirectIfSignedIn();
-  })
-  .catch((error) => {
-    console.error("Unable to initialize Brew database", error);
-  });
+if (isFirebaseReady()) {
+  redirectIfSignedIn();
+}
 
 if (signupForm) {
   signupForm.addEventListener("submit", async (event) => {
@@ -55,33 +53,28 @@ if (signupForm) {
     const city = document.getElementById("signupCity").value.trim();
     const intention = document.getElementById("signupIntention").value.trim();
 
+    if (!isFirebaseReady()) {
+      showFeedback(feedback, "Add your Firebase project config in firebase-config.js first.");
+      return;
+    }
+
     try {
-      const exists = await BrewDB.getUserByEmail(email);
-
-      if (exists) {
-        showFeedback(feedback, "That email already has a Brew account.");
-        return;
-      }
-
-      const newUser = await BrewDB.createUser({
-        id: crypto.randomUUID(),
+      const newUser = await signUpUser({
         fullName,
         email,
         password,
         city,
-        intention,
-        createdAt: new Date().toISOString()
+        intention
       });
 
       saveSession(newUser);
       showFeedback(feedback, "Profile created. Taking you into Brew now.", false);
-
       window.setTimeout(() => {
         window.location.href = "./home.html";
       }, 400);
     } catch (error) {
       console.error("Unable to create account", error);
-      showFeedback(feedback, "We couldn't save your account right now. Please try again.");
+      showFeedback(feedback, error.message || "We couldn't save your account right now.");
     }
   });
 }
@@ -94,23 +87,21 @@ if (loginForm) {
     const email = normalizeEmail(document.getElementById("loginEmail").value);
     const password = document.getElementById("loginPassword").value;
 
+    if (!isFirebaseReady()) {
+      showFeedback(feedback, "Add your Firebase project config in firebase-config.js first.");
+      return;
+    }
+
     try {
-      const user = await BrewDB.getUserByCredentials(email, password);
-
-      if (!user) {
-        showFeedback(feedback, "We couldn't find an account with that email and password.");
-        return;
-      }
-
+      const user = await signInUser({ email, password });
       saveSession(user);
       showFeedback(feedback, "Login successful. Opening your Brew home.", false);
-
       window.setTimeout(() => {
         window.location.href = "./home.html";
       }, 300);
     } catch (error) {
       console.error("Unable to log in", error);
-      showFeedback(feedback, "We couldn't access the database right now. Please try again.");
+      showFeedback(feedback, error.message || "We couldn't log you in right now.");
     }
   });
 }

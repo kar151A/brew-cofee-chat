@@ -7,7 +7,7 @@ The app includes:
 - a login page for returning users
 - a calm sage-green home page
 - a coffee chat planner
-- per-user saved chat history stored locally in the browser with IndexedDB
+- per-user saved chat history stored in Firebase Firestore
 
 ## Pages
 
@@ -40,8 +40,10 @@ The app uses a simple static front-end architecture with browser-based persisten
   Main application screen for planning coffee chats and viewing saved history.
 - `auth.js`
   Handles signup, login, session creation, and redirect behavior.
-- `db.js`
-  Wraps IndexedDB access for users and history records.
+- `firebase-config.js`
+  Holds the Firebase web app configuration for the project.
+- `firebase-service.js`
+  Wraps Firebase Auth and Firestore reads and writes.
 - `home.js`
   Loads the logged-in user, renders the planner, saves chat previews, and displays user-specific history.
 - `styles.css`
@@ -49,10 +51,10 @@ The app uses a simple static front-end architecture with browser-based persisten
 
 ### Data model
 
-The app stores two main record types in IndexedDB:
+The app stores two main record types in Cloud Firestore:
 
 - `users`
-  Stores account information such as name, email, password, city, and intention.
+  Stores account information such as name, email, city, and intention.
 - `history`
   Stores generated coffee chat previews linked to a specific user by `userId`.
 
@@ -66,20 +68,20 @@ flowchart TD
     B -- "Yes" --> C["home.html"]
     B -- "No" --> D["login.html"]
     D --> E["auth.js login flow"]
-    E --> F["db.js reads IndexedDB users"]
+    E --> F["firebase-service.js reads Firebase Auth and Firestore"]
     F --> C
     G["signup.html"] --> H["auth.js signup flow"]
-    H --> I["db.js writes user to IndexedDB"]
+    H --> I["firebase-service.js writes user profile to Firestore"]
     I --> C
     C --> J["home.js planner flow"]
-    J --> K["db.js writes history entry"]
+    J --> K["firebase-service.js writes history entry"]
     K --> L["Render saved history for current user"]
 ```
 
 ### Authentication approach
 
-- Signup creates a user record in IndexedDB.
-- Login validates the email and password against IndexedDB.
+- Signup creates a Firebase Auth user and a Firestore user profile.
+- Login validates the email and password with Firebase Auth.
 - A successful login stores the current user session in `localStorage`.
 - Logout clears the session and returns the user to the login page.
 
@@ -118,8 +120,18 @@ signup.html
 styles.css
 ```
 
+## Firebase setup
+
+1. Create a Firebase project and a web app.
+2. Paste the Firebase config into `firebase-config.js`.
+3. Enable `Authentication -> Sign-in method -> Email/Password`.
+4. Create a Cloud Firestore database.
+5. Paste the rules from `firestore.rules` into Firestore Rules and publish them.
+6. Create a composite Firestore index for:
+   `history: userId Ascending, createdAt Descending`
+
 ## Notes
 
-- User accounts are stored locally in the current browser.
-- Coffee chat history is tied to the saved local user account.
-- This version does not require Firebase or any external backend.
+- This version uses Firebase Auth for real login and signup.
+- User profile data and chat history are stored in Firestore.
+- Session state is still mirrored locally so the app can redirect between pages.
