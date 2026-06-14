@@ -95,17 +95,7 @@ flowchart TD
 
 You can open the app directly in a browser, but using a small local server is recommended.
 
-### Option 1: Python
-
-```bash
-python -m http.server 5500
-```
-
-Then open:
-
-```txt
-http://localhost:5500
-```
+## just click on this link = https://brew-cofee.netlify.app/
 
 ## Project structure
 
